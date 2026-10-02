@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Bereket Dagne" />
+  <meta name="dcterms.date" content="2026-10-02" />
+  <title>Лабораторная работа № 8</title>
+  <style>
+    html {
+      font-family: DejaVu Serif;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: DejaVu Sans Mono;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1a1a1a;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Лабораторная работа № 8</h1>
+<p class="author">Bereket Dagne</p>
+<p class="date">2026-10-02</p>
+</header>
+<h1 id="лабораторная-работа-8">Лабораторная работа № 8</h1>
+<h2
+id="поиск-файлов.-перенаправление-ввода-вывода.-просмотр-запущенных-процессов">Поиск
+файлов. Перенаправление ввода-вывода. Просмотр запущенных процессов</h2>
+<hr />
+<h3 id="цель-работы">Цель работы</h3>
+<p>Ознакомление с инструментами поиска файлов и фильтрации текстовых
+данных. Приобретение практических навыков по управлению процессами, по
+проверке использования диска и обслуживанию файловых систем.</p>
+<hr />
+<h3 id="выполнение-работы">Выполнение работы</h3>
+<h4 id="запись-файлов-из-etc-в-file.txt">1. Запись файлов из /etc в
+file.txt</h4>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /etc <span class="op">&gt;</span> ~/file.txt</span></code></pre></div>
+<h4 id="добавление-файлов-из-домашнего-каталога">2. Добавление файлов из
+домашнего каталога</h4>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~ <span class="op">&gt;&gt;</span> ~/file.txt</span></code></pre></div>
+<h4 id="поиск-файлов-с-расширением-.conf">3. Поиск файлов с расширением
+.conf</h4>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">&quot;.conf&quot;</span> ~/file.txt <span class="op">&gt;</span> ~/conf.txt</span></code></pre></div>
+<h4 id="поиск-файлов-начинающихся-с-символа-c">4. Поиск файлов,
+начинающихся с символа c</h4>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> ~ <span class="at">-name</span> <span class="st">&quot;c*&quot;</span> <span class="at">-print</span></span></code></pre></div>
+<h4 id="вывод-файлов-из-etc-начинающихся-с-h">5. Вывод файлов из /etc,
+начинающихся с h</h4>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /etc <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;^h&quot;</span> <span class="kw">|</span> <span class="fu">less</span></span></code></pre></div>
+<h4 id="запуск-процесса-в-фоновом-режиме">6. Запуск процесса в фоновом
+режиме</h4>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> ~ <span class="at">-name</span> <span class="st">&quot;log*&quot;</span> <span class="at">-print</span> <span class="op">&gt;</span> ~/logfile <span class="kw">&amp;</span></span></code></pre></div>
+<h4 id="удаление-logfile">7. Удаление logfile</h4>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> ~/logfile</span></code></pre></div>
+<h4 id="запуск-gedit-в-фоновом-режиме">8. Запуск gedit в фоновом
+режиме</h4>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">gedit</span> <span class="kw">&amp;</span></span></code></pre></div>
+<h4 id="определение-pid-процесса-gedit">9. Определение PID процесса
+gedit</h4>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> aux <span class="kw">|</span> <span class="fu">grep</span> gedit</span></code></pre></div>
+<h4 id="чтение-справки-по-kill-и-завершение-процесса">10. Чтение справки
+по kill и завершение процесса</h4>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> kill</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">kill</span> <span class="op">&lt;</span>PID<span class="op">&gt;</span></span></code></pre></div>
+<h4 id="проверка-использования-диска">11. Проверка использования
+диска</h4>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">df</span> <span class="at">-h</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">du</span> <span class="at">-a</span> ~</span></code></pre></div>
+<h4 id="поиск-всех-директорий-в-домашнем-каталоге">12. Поиск всех
+директорий в домашнем каталоге</h4>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">find</span> ~ <span class="at">-type</span> d</span></code></pre></div>
+<hr />
+<h3 id="результаты-работы">Результаты работы</h3>
+<p><strong>Скриншот 1:</strong> Запись файлов и поиск .conf <img
+src="result1.png" alt="Результаты 1" /></p>
+<p><strong>Скриншот 2:</strong> Поиск файлов и управление процессами
+<img src="result2.png" alt="Результаты 2" /></p>
+<p><strong>Скриншот 3:</strong> Проверка диска <img src="result3.png"
+alt="Результаты 3" /></p>
+<hr />
+<h3 id="ответы-на-контрольные-вопросы">Ответы на контрольные
+вопросы</h3>
+<p><strong>1. Какие потоки ввода-вывода вы знаете?</strong> stdin
+(стандартный ввод, дескриптор 0), stdout (стандартный вывод, дескриптор
+1), stderr (стандартный вывод ошибок, дескриптор 2).</p>
+<p><strong>2. Объясните разницу между операцией &gt; и
+&gt;&gt;.</strong> <code>&gt;</code> перезаписывает файл,
+<code>&gt;&gt;</code> добавляет в конец файла.</p>
+<p><strong>3. Что такое конвейер?</strong> Конвейер (<code>|</code>)
+передаёт вывод одной команды на вход другой команде.</p>
+<p><strong>4. Что такое процесс? Чем это понятие отличается от
+программы?</strong> Процесс — это выполняющаяся программа. Программа —
+это файл с инструкциями, процесс — это активное выполнение этих
+инструкций.</p>
+<p><strong>5. Что такое PID и GID?</strong> PID (Process ID) —
+идентификатор процесса. GID (Group ID) — идентификатор группы.</p>
+<p><strong>6. Что такое задачи и какая команда позволяет ими
+управлять?</strong> Задачи (jobs) — это процессы, запущенные в фоновом
+режиме. Управляются командой <code>jobs</code>.</p>
+<p><strong>7. Найдите информацию об утилитах top и htop. Каковы их
+функции?</strong> <code>top</code> и <code>htop</code> — утилиты для
+мониторинга процессов в реальном времени. Показывают загрузку CPU,
+памяти, список процессов.</p>
+<p><strong>8. Назовите и дайте характеристику команде поиска файлов.
+Приведите примеры использования этой команды.</strong> Команда
+<code>find</code> ищет файлы по заданным критериям. Пример:
+<code>find ~ -name "*.txt" -print</code>.</p>
+<p><strong>9. Можно ли по контексту (содержанию) найти файл? Если да, то
+как?</strong> Да, с помощью команды <code>grep</code>. Пример:
+<code>grep "текст" file.txt</code>.</p>
+<p><strong>10. Как определить объем свободной памяти на жёстком
+диске?</strong> Команда <code>df -h</code>.</p>
+<p><strong>11. Как определить объем вашего домашнего каталога?</strong>
+Команда <code>du -sh ~</code>.</p>
+<p><strong>12. Как удалить зависший процесс?</strong> Найти PID командой
+<code>ps aux | grep имя</code>, затем <code>kill &lt;PID&gt;</code> или
+<code>kill -9 &lt;PID&gt;</code> для принудительного завершения.</p>
+<hr />
+<h3 id="выводы">Выводы</h3>
+<p>В ходе выполнения лабораторной работы № 8 я ознакомился с
+инструментами поиска файлов и фильтрации текстовых данных. Я приобрёл
+практические навыки по управлению процессами, проверке использования
+диска и обслуживанию файловых систем.</p>
+<p>Таким образом, цель работы была полностью достигнута. ```</p>
+</body>
+</html>
